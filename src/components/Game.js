@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+
+// styles
 import "./Game.css";
 
 const Game = ({
@@ -18,20 +20,22 @@ const Game = ({
         e.preventDefault();
 
         verifyLetter(letter);
+
         setLetter("");
 
         letterInputRef.current.focus();
     };
+
     return (
         <div className="game">
             <p className="points">
-                <span>Pontuação {score}</span>
+                <span>Pontuação</span>: {score}
             </p>
-            <h1>Advinhe a palavra</h1>
+            <h1>Advinhe a palavra:</h1>
             <h3 className="tip">
-                Dica sobra a palavra <span>{pickedCategory}</span>
+                Dica sobre a palavra: <span>{pickedCategory}</span>
             </h3>
-            <p>Tentaticas {guesses}</p>
+            <p>Você ainda tem {guesses} tentativa(s).</p>
             <div className="wordContainer">
                 {letters.map((letter, i) =>
                     guessedLetters.includes(letter) ? (
@@ -44,18 +48,18 @@ const Game = ({
                 )}
             </div>
             <div className="letterContainer">
-                <p>Tenta acerta a letra</p>
+                <p>Tente adivnhar uma letra da palavra:</p>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="letter"
-                        maxLength={1}
-                        required
+                        maxLength="1"
                         onChange={(e) => setLetter(e.target.value)}
+                        required
                         value={letter}
                         ref={letterInputRef}
                     />
-                    <button>Jogar</button>
+                    <button>Jogar!</button>
                 </form>
             </div>
             <div className="wrongLettersContainer">
